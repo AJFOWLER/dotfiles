@@ -10,6 +10,10 @@ To link from .dotfiles to ~.vimrc
 https://www.webpro.nl/articles/getting-started-with-dotfiles
 
 in windows:
+in mac/linux:
+```
+> mkdir ~/.vim/tmp
+```
 
 to do:
  - files with `~` are back ups of original files.

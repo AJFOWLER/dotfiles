@@ -20,6 +20,11 @@ endif
 " Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
 
+if has("win32") || has("win16")
+else
+	set directory=~/.vim/tmp
+endif
+
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
@@ -28,8 +33,6 @@ else
     set undofile	" keep an undo file (undo changes after closing)
   endif
 endif
-
-:set noundofile
 
 if &t_Co > 2 || has("gui_running")
   " Switch on highlighting the last used search pattern.
@@ -75,6 +78,16 @@ au BufNewFile,BufRead *.js, *.html, *.css
   \ set tabstop=2
   \ set softtabstop=2
   \ set shiftwidth=2
+"yaml needs its own:
+au BufNewFile.BufRead *.yml, *.yaml
+  \ set tabstop=2
+  \ set sts=2 
+  \ set sw=2
+  \ set expandtab
+  \ set syntax on
+  \ set ruler
+  \ syntax on 
+  \ filetype indent plugin on
 "netrw config
 let g:netrw_winsize = 25
 let g:netrw_liststyle = 3
