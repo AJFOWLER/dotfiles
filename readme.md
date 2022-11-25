@@ -27,6 +27,21 @@ to see colour schemes:
 :colorscheme [space] [cntrl+d]
 in .vimrc:
 colorscheme blue 
+Vundle in unix:
+>git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+set nocompatible
+filetype off
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+" add more plugins
+call vundle#end()
+filetype plugin indent on
+
+```
+Within vim :PluginInstall will install all relevant plugins
+
 to do:
  - Get vundle working on windows
  -~~ files with `~` are back ups of original files.
