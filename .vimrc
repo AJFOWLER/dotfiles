@@ -19,11 +19,17 @@ endif
 
 " Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
-
-if has("win32") || has("win16")
+" directory = swp files, backupdir = undo files // means write direct.
+if has("win32") || has("win16") || has("win64")
+	set directory=C:\Users\Alex\vimfiles\tmp_swp\\
+	set backupdir=C:\Users\Alex\vimfiles\tmp_swp\\
 else
-	set directory=~/.vim/tmp
+	set directory=~/.vim/tmp//
+	set directory=~/.vim/tmp//
 endif
+" backup files datetimestamp:
+
+au BufWritePre * let &bex = '-' . strftime("%Y%m%d-%H%M%S") . '.vimbackup'
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
