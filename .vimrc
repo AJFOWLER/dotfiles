@@ -19,26 +19,33 @@ endif
 
 " Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
+" enable backups:
+set backup
+" enable undo files:
+set undofile
+set swapfile
 " directory = swp files, backupdir = undo files // means write direct.
 if has("win32") || has("win16") || has("win64")
 	set directory=C:\Users\Alex\vimfiles\tmp_swp\\
 	set backupdir=C:\Users\Alex\vimfiles\tmp_swp\\
+	set undodir=C:\Users\Alex\vimfiles\tmp_swp\\
 else
 	set directory=~/.vim/tmp//
-	set directory=~/.vim/tmp//
+	set backupdir=~/.vim/tmp//
+	set undodir=~/.vim/tmp//
 endif
 " backup files datetimestamp:
-
 au BufWritePre * let &bex = '-' . strftime("%Y%m%d-%H%M%S") . '.vimbackup'
-
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file (restore to previous version)
-  if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
-  endif
-endif
+"
+" Nuke these lines for now:
+"if has("vms")
+"  set nobackup		" do not keep a backup file, use versions instead
+"else
+"  set backup		" keep a backup file (restore to previous version)
+"  if has('persistent_undo')
+"    set undofile	" keep an undo file (undo changes after closing)
+"  endif
+"endif
 
 if &t_Co > 2 || has("gui_running")
   " Switch on highlighting the last used search pattern.
@@ -85,7 +92,7 @@ au BufNewFile,BufRead *.js, *.html, *.css
   \ set softtabstop=2
   \ set shiftwidth=2
 "yaml needs its own:
-au BufNewFile.BufRead *.yml, *.yaml
+au BufNewFile,BufRead *.yml, *.yaml
   \ set tabstop=2
   \ set sts=2 
   \ set sw=2
@@ -93,7 +100,6 @@ au BufNewFile.BufRead *.yml, *.yaml
   \ set syntax on
   \ set ruler
   \ syntax on 
-  \ filetype indent plugin on
 "netrw config
 let g:netrw_winsize = 25
 let g:netrw_liststyle = 3
