@@ -21,10 +21,16 @@ in mac/linux:
 ```
 > mkdir ~/.vim/tmp
 ```
-
+We can set colours with:
+:colorscheme name
+to see colour schemes:
+:colorscheme [space] [cntrl+d]
+in .vimrc:
+colorscheme blue 
 to do:
- - files with `~` are back ups of original files.
- - files with .swp appended are swap files which detect edits made.
+ - Get vundle working on windows
+ -~~ files with `~` are back ups of original files.
+ - ~~files with .swp appended are swap files which detect edits made.
 
 we will direct these to go into a tmp directory.
  - swap files/temp files to dedicated directory; this will need to be system specific as dirs for windows systems will differ.
