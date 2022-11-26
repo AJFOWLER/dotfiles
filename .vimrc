@@ -29,10 +29,12 @@ if has("win32") || has("win16") || has("win64")
 	set directory=C:\Users\Alex\vimfiles\tmp_swp\\
 	set backupdir=C:\Users\Alex\vimfiles\tmp_swp\\
 	set undodir=C:\Users\Alex\vimfiles\tmp_swp\\
+	set rtp+=C:\Users\Alex\vimfiles\bundle\Vundle.vim
 else
 	set directory=~/.vim/tmp//
 	set backupdir=~/.vim/tmp//
 	set undodir=~/.vim/tmp//
+	set rtp+=~/.vim/bundle/Vundle.vim
 endif
 " backup files datetimestamp:
 au BufWritePre * let &bex = '-' . strftime("%Y%m%d-%H%M%S") . '.vimbackup'
@@ -112,7 +114,6 @@ let g:netrw_banner = 0
 set nocompatible
 filetype off
 " set the runtime path to include Vundle and init.
-set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " add further plugins here...

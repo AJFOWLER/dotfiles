@@ -41,6 +41,10 @@ filetype plugin indent on
 
 ```
 Within vim :PluginInstall will install all relevant plugins
+Vundle.vim goes into:
+```c:\User\username\vimfiles\bundle\Vundle.vim```
+We can then make rtp relevant to specific filesystem
+`
 
 to do:
  - Get vundle working on windows
