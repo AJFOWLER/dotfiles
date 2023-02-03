@@ -71,9 +71,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " colour-scheme: morning
-colorscheme morning 
+colorscheme blue 
 " Highlight current cursor position
-set cursorline
+set cursorline!
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
@@ -109,6 +109,40 @@ au BufNewFile,BufRead *.yml, *.yaml
 let g:netrw_winsize = 25
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
+" Custom commands for chunks/project management
+" PROJECT MANAGEMENT CHUNKING
+" ,t will create a new CHUNK on the line below
+nnoremap ,c o- []
+" When all subtasks are marked as done, then the chunk will be marked as done.
+" ,d will make the current task done.
+" nnoremap ,d :s/\[\]/\[x\]/ <CR><ESC>$
+" ,t will create a task below current chunk
+nnoremap ,t o  -{}
+",d will mark as done
+nnoremap ,d :s/{}/{x}/ <CR><ESC>$
+
+" JOURNAL TEMPLATING
+function! Journal()
+	let l:dt = strftime('%d-%b-%Y')	
+	let l:day = strftime('%a')
+	echo(l:day)
+	" Format:
+	" Date -- Day of the week
+	" WP
+	" Exercise
+	" Wt
+	" Reflection
+	execute 'normal G'
+	" move to the bottom of the page
+	execute 'normal! o'.l:dt.' --'.l:day.'--'
+	execute 'normal! o'.'Writing practice: {}'	
+	execute 'normal! o'.'Exercise: '
+	if l:day == 'Mon'
+		execute 'normal! o'.'Weight:'
+	endif
+	execute 'normal! o'.'---Reflection---'
+	execute 'normal! o'
+endfunction
 
 "Vundle setup
 set nocompatible
