@@ -120,7 +120,10 @@ nnoremap ,c o- []
 nnoremap ,t o  -{}
 ",d will mark as done
 nnoremap ,d :s/{}/{x}/ <CR><ESC>$
-
+" ,l will be used to date time activities when they are completed:
+" this means that when we click ,l in our progress file, the date will be
+" appended and new line enter
+nnoremap ,l A ¦ <C-R>=strftime("%c")<CR><ESC>o
 " JOURNAL TEMPLATING
 function! Journal()
 	let l:dt = strftime('%d-%b-%Y')	
