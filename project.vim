@@ -18,9 +18,14 @@ nnoremap ,c o- []
 nnoremap ,t o  -{}
 ",d will mark as done
 nnoremap ,d :s/{}/{x}/ <CR><ESC>$
-
-" Today's date:
-
+" for our mapping of activities; first remap to add date:
+" this means that when we click ,l in our progress file, the date will be
+" appended and new line enter
+nnoremap ,l A ¦ <C-R>=strftime("%c")<CR><ESC>o
+"|  | 07/02/2023 13:09:35  | 07/02/2023 13:10:20 | 07/02/2023 13:10:27 |
+"07/02/2023 13:10:45 | 07/02/2023 13:12:27 | 07/02/2023 13:12:50
+" | 07/02/2023 13:10:56 | 07/02/2023 13:12:04 ¦ 07/02/2023 13:13:25
+"
 function! Journal()
 	let l:dt = strftime('%d-%b-%Y')	
 	let l:day = strftime('%a')
@@ -43,6 +48,21 @@ function! Journal()
 	execute 'normal! o'
 endfunction
 
+function! CleanUp()
+	"This function cleans up the todo list into the done-list
+	" Yank to Z register
+	" Small z = last match; capital Z = all matches
+	" First clear the z reg
+	call setreg('z',[])
+	g/{x}/y Z
+	" We can then use "zp to paste items!
+	" execute 'normal! "zp write newfile.txt'
+	let l.cliptext = getreg('z')
+	" Now get rid of leading whitespace
+
+endfunction
+
+"
 " CreateProject command
 command -nargs=1 CreateProject :call CreateProject(<f-args>)
 
