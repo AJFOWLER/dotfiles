@@ -121,6 +121,8 @@ nnoremap ,t o  -{}
 ",d will mark as done
 nnoremap ,d :s/{}/{x}/ <CR><ESC>$
 
+" numbers:
+set number
 " JOURNAL TEMPLATING
 function! Journal()
 	let l:dt = strftime('%d-%b-%Y')	
@@ -143,7 +145,13 @@ function! Journal()
 	execute 'normal! o'.'---Reflection---'
 	execute 'normal! o'
 endfunction
-
+" MONTH FILE TEMPLATING
+function Month()
+	execute 'normal! i ##'
+	execute 'normal! o ------------ TO DO ----------'
+	execute 'normal! 5o'
+	execute 'normal! o ------------ JOURNAL----------'
+endfunction
 "Vundle setup
 set nocompatible
 filetype off
