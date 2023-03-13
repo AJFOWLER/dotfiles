@@ -147,6 +147,13 @@ function! Journal()
 	execute 'normal! o'
 endfunction
 
+" Need to to have laststatus setup
+" Add in statusline 
+set laststatus=2
+set statusline= 
+" Statusline show filepath
+set statusline+=%F
+
 "Vundle setup
 set nocompatible
 filetype off
