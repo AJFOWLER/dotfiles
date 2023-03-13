@@ -124,6 +124,8 @@ nnoremap ,d :s/{}/{x}/ <CR><ESC>$
 " this means that when we click ,l in our progress file, the date will be
 " appended and new line enter
 nnoremap ,l A ¦ <C-R>=strftime("%c")<CR><ESC>o
+" numbers:
+set number
 " JOURNAL TEMPLATING
 function! Journal()
 	let l:dt = strftime('%d-%b-%Y')	
@@ -147,12 +149,33 @@ function! Journal()
 	execute 'normal! o'
 endfunction
 
+" MONTH FILE TEMPLATING
+function Month()
+	execute 'normal! i ##'
+	execute 'normal! o ------------ TO DO ----------'
+	execute 'normal! 5o'
+	execute 'normal! o ------------ JOURNAL----------'
+endfunction
+
+" STATUS LINE
 " Need to to have laststatus setup
-" Add in statusline 
 set laststatus=2
+" Start with empty status line
 set statusline= 
 " Statusline show filepath
-set statusline+=%F
+set statusline+=%<%F
+" Append [+] to the file if it has been changed:
+set statusline+=%h%m%r
+" Currently active register, quite helpful 
+set statusline+=%1*[%rreg:%{v:register}]
+" Buffernumber:
+set statusline+=%2*[%rbuf:%n]
+"
+"These UserNumbers correspond to %N* for styling!
+hi User1 ctermfg=yellow ctermbg=13
+hi User2 ctermfg=darkgreen ctermbg=14 
+"
+" Now add git current branch
 
 "Vundle setup
 set nocompatible
