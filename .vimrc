@@ -169,7 +169,7 @@ function! FindTerminal()
 	" let l:bn = bufwinnr('terminal')
  	let l:bn = uniq(map(filter(getwininfo(), 'v:val.terminal'), 'v:val.bufnr'))
 	" Test this with: :silent let foo = FindTerminal()
-	return l:bn[0] # Will probably fail badly if no terminal
+	return l:bn[0] 
 endfunction
 " To move current line to terminal buffer::
 "nnoremap ,sk :%y \| :call term_sendkeys(2, @")<CR>
