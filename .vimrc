@@ -123,7 +123,7 @@ nnoremap ,d :s/{}/{x}/ <CR><ESC>$
 " ,l will be used to date time activities when they are completed:
 " this means that when we click ,l in our progress file, the date will be
 " appended and new line enter
-nnoremap ,l A ¦ <C-R>=strftime("%c")<CR><ESC>o
+nnoremap ,l A ¦ <C-R>=strftime("%c")<CR><ESC>o<ESC>
 " numbers:
 set number
 " JOURNAL TEMPLATING
@@ -150,12 +150,31 @@ function! Journal()
 endfunction
 
 " MONTH FILE TEMPLATING
-function Month()
+function! Month()
 	execute 'normal! i ##'
 	execute 'normal! o ------------ TO DO ----------'
 	execute 'normal! 5o'
 	execute 'normal! o ------------ JOURNAL----------'
 endfunction
+
+" TERMINAL IN VIM - SAVES NEEDING TMUX!
+" Note you can create a terminal pane in vim :terminal
+" vertical: :vertical terminal 
+" to close: bd
+" Use CNTRL-W to enter vim normal mode.
+" yank current line to unnamed register, sendkeys to buffer2, @" sends it
+" Note that terminals are of type R; :ls R
+function! FindTerminal()
+	" If name of terminal session was 'terminal':
+	" let l:bn = bufwinnr('terminal')
+ 	let l:bn = uniq(map(filter(getwininfo(), 'v:val.terminal'), 'v:val.bufnr'))
+	" Test this with: :silent let foo = FindTerminal()
+	return l:bn[0] # Will probably fail badly if no terminal
+endfunction
+" To move current line to terminal buffer::
+"nnoremap ,sk :%y \| :call term_sendkeys(2, @")<CR>
+" This works very well!
+nnoremap ,sk :,y \| :call term_sendkeys(FindTerminal(), @")<CR>
 
 " STATUS LINE
 " Need to to have laststatus setup
@@ -176,7 +195,7 @@ hi User1 ctermfg=yellow ctermbg=13
 hi User2 ctermfg=darkgreen ctermbg=14 
 "
 " Now add git current branch
-
+"
 "Vundle setup
 set nocompatible
 filetype off
