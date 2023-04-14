@@ -30,11 +30,13 @@ if has("win32") || has("win16") || has("win64")
 	set backupdir=C:\Users\Alex\vimfiles\tmp_swp\\
 	set undodir=C:\Users\Alex\vimfiles\tmp_swp\\
 	set rtp+=C:\Users\Alex\vimfiles\bundle\Vundle.vim
+	let g:wiki_root = C:\Users\Alex\Documents\wiki
 else
 	set directory=~/.vim/tmp//
 	set backupdir=~/.vim/tmp//
 	set undodir=~/.vim/tmp//
 	set rtp+=~/.vim/bundle/Vundle.vim
+	let g:wiki_root = '~/wiki'
 endif
 " backup files datetimestamp:
 au BufWritePre * let &bex = '-' . strftime("%Y%m%d-%H%M%S") . '.vimbackup'
@@ -126,6 +128,7 @@ nnoremap ,d :s/{}/{x}/ <CR><ESC>$
 nnoremap ,l A ¦ <C-R>=strftime("%c")<CR><ESC>o<ESC>
 " numbers:
 set number
+" For now, bail on journal templating, try out vim.wiki
 " JOURNAL TEMPLATING
 function! Journal()
 	let l:dt = strftime('%d-%b-%Y')	
@@ -206,6 +209,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold' " better folding
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'mattn/emmet-vim'
+Plugin 'lervag/wiki.vim' " wiki.vim
 " All plugins must finish before this section:
 call vundle#end()
 filetype plugin indent on
