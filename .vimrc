@@ -112,6 +112,8 @@ let g:netrw_winsize = 25
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 " Custom commands for chunks/project management
+" pdb import/set_trace
+nnoremap ,p iimport pdb; pdb.set_trace()
 " PROJECT MANAGEMENT CHUNKING
 " ,t will create a new CHUNK on the line below
 nnoremap ,c o- []
