@@ -26,17 +26,17 @@ set undofile
 set swapfile
 " directory = swp files, backupdir = undo files // means write direct.
 if has("win32") || has("win16") || has("win64")
-	set directory=C:\Users\Alex\vimfiles\tmp_swp\\
-	set backupdir=C:\Users\Alex\vimfiles\tmp_swp\\
-	set undodir=C:\Users\Alex\vimfiles\tmp_swp\\
-	set rtp+=C:\Users\Alex\vimfiles\bundle\Vundle.vim
-	let g:wiki_root = C:\Users\Alex\Documents\wiki
+	set directory=$HOME\vimfiles\tmp_swp\\
+	set backupdir=$HOME\vimfiles\tmp_swp\\
+	set undodir=$HOME\vimfiles\tmp_swp\\
+	set rtp+=$HOME\vimfiles\bundle\Vundle.vim
+	let g:wiki_root= $HOME . "\Documents\wiki"
 else
 	set directory=~/.vim/tmp//
 	set backupdir=~/.vim/tmp//
 	set undodir=~/.vim/tmp//
 	set rtp+=~/.vim/bundle/Vundle.vim
-	let g:wiki_root = '~/wiki'
+	let g:wiki_root='~/wiki'
 endif
 " backup files datetimestamp:
 au BufWritePre * let &bex = '-' . strftime("%Y%m%d-%H%M%S") . '.vimbackup'
