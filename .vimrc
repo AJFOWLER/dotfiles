@@ -107,6 +107,8 @@ au BufNewFile,BufRead *.yml, *.yaml
   \ set syntax on
   \ set ruler
   \ syntax on 
+" make file:
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 "netrw config
 let g:netrw_winsize = 25
 let g:netrw_liststyle = 3
